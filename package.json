@@ -1,0 +1,26 @@
+{
+  "name": "json-translate",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "keywords": [],
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest",
+    "build": "tsup"
+  },
+  "dependencies": {
+    "fast-glob": "^3.3.1",
+    "simple-git": "^3.20.0"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.26",
+    "eslint": "^8.51.0",
+    "tsup": "^7.2.0",
+    "vitest": "^0.34.6"
+  }
+}
