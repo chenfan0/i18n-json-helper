@@ -1,0 +1,13 @@
+{
+  "title": "标题 -> de",
+  "description": "描述 -> de",
+  "xxx": {
+    "title": "xxx的标题 -> de",
+    "new": "111 -> de"
+  },
+  "arr": [
+    "1 -> de",
+    "2 -> de",
+    "3 -> de"
+  ]
+}
