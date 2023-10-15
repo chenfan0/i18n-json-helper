@@ -72,7 +72,7 @@ describe('mergeObj', () => {
       a: 2,
     }
 
-    expect(mergeObj(target, source)).toMatchObject({
+    expect(mergeObj(target, source)[0]).toMatchObject({
       a: 1,
     })
   })
@@ -84,7 +84,7 @@ describe('mergeObj', () => {
       a: 2,
     }
 
-    expect(mergeObj(target, source, 'source')).toMatchObject({
+    expect(mergeObj(target, source, 'source')[0]).toMatchObject({
       a: 2,
     })
   })
@@ -96,7 +96,7 @@ describe('mergeObj', () => {
       b: {},
     }
 
-    expect(mergeObj(target, source)).toMatchObject({
+    expect(mergeObj(target, source)[0]).toMatchObject({
       a: 2,
       b: {},
     })
@@ -119,7 +119,7 @@ describe('mergeObj', () => {
       objArr: [{ name: 'source', age: 18 }, {}],
     }
 
-    expect(mergeObj(target, source)).toMatchObject({
+    expect(mergeObj(target, source)[0]).toMatchObject({
       a: {
         b: 2,
         c: 4,
@@ -131,7 +131,7 @@ describe('mergeObj', () => {
 })
 
 describe('forEachObj', () => {
-  it('forEachObj', () => {
+  it('forEachObj', async() => {
     const obj = {
       name: 'obj',
       nestedObj: {
@@ -141,7 +141,7 @@ describe('forEachObj', () => {
       arr: [1, 2, 3],
     }
 
-    forEachObj(obj, (obj, key, val) => {
+    await forEachObj(obj, (obj, key, val) => {
       return obj[key] = `${val} -> ${key}`
     })
 
