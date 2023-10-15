@@ -1,6 +1,7 @@
 export const isObj = (val: any) => typeof val === 'object' && val !== null
 export const isStr = (val: any) => typeof val === 'string'
 export const getType = (val: any) => Object.prototype.toString.call(val).slice(8, -1)
+export const isEmptyObj = (val: Record<string, any>) => Object.keys(val).length === 0
 
 export function compareObj(latestObj: Record<string, any>, expiredObj: Record<string, any>) {
   const keys = Object.keys(latestObj)
@@ -37,12 +38,14 @@ export function mergeObj(
   highPriorityVal: 'targe' | 'source' = 'targe',
 ) {
   const keys = Object.keys(source)
+  const needTranslateObj: Record<string, any> = {}
 
   for (const key of keys) {
     const sourceVal = (source as any)[key]
 
     if (!Object.hasOwn(target, key)) {
       (target as any)[key] = sourceVal
+      needTranslateObj[key] = sourceVal
       continue
     }
 
@@ -59,20 +62,26 @@ export function mergeObj(
     // if type targetVal difference sourceVal, use sourceVal type
     if (!isSameType) {
       (target as any)[key] = sourceVal
+      needTranslateObj[key] = sourceVal
       continue
     }
 
-    ;(target as any)[key] = isObj(sourceVal)
-      ? mergeObj(targetVal, sourceVal, highPriorityVal)
-      : highPriorityVal === 'targe'
+    if (isObj(sourceVal)) {
+      const res = mergeObj(targetVal, sourceVal, highPriorityVal)
+      ;(target as any)[key] = res[0]
+      !isEmptyObj(res[1]) && (needTranslateObj[key] =  res[1])
+    }
+    else {
+      (target as any)[key] = highPriorityVal === 'targe'
         ? targetVal
         : sourceVal
+    }
   }
 
-  return target
+  return [target, needTranslateObj]
 }
 
-export function forEachObj(
+export async function forEachObj(
   obj: Record<string, any>,
   fn: (obj: Record<string, any>, key: string, val: any) => any,
 ) {
@@ -81,10 +90,10 @@ export function forEachObj(
   for (const key of keys) {
     const val = obj[key]
     if (isObj(val))
-      obj[key] = forEachObj(val, fn)
+      obj[key] = await forEachObj(val, fn)
 
     else
-      obj[key] = fn(obj, key, val) || obj[key]
+      obj[key] = (await fn(obj, key, val)) || obj[key]
   }
 
   return obj

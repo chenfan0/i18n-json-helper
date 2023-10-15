@@ -1,8 +1,9 @@
 export interface ConfigType {
   localesDir: string,
   baseLang: string,
-  translateLangs: string[],
+  targetLangs: string[],
   space: number,
   mode: 'separate' | 'single',
-  translateFn?: (baseLangText: string, translateLang: string) => string
+  outputDir: string
+  translateFn?: (baseLangText: string, translateLang: string) => Promise<string | number> | string | number
 }

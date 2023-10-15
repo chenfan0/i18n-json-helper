@@ -6,12 +6,18 @@ import type { ConfigType } from './type'
 
 const configFilePath = path.resolve(cwd(), CONFIG_File_NAME)
 
+export function defineConfig(config: ConfigType) {
+  return config
+}
+
 export async function getConfig() {
   const config = (await import(configFilePath)).default
 
   const resolvedConfig = { ...BASE_CONFIG, ...config } as ConfigType
 
+  // make sure path is absolute
   resolvedConfig.localesDir = path.resolve(cwd(), resolvedConfig.localesDir)
+  resolvedConfig.outputDir = path.resolve(cwd(), resolvedConfig.outputDir)
 
   return resolvedConfig
 }

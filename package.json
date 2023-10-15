@@ -1,12 +1,15 @@
 {
-  "name": "json-translate",
+  "name": "i18n-json-helper",
   "type": "module",
   "version": "1.0.0",
   "description": "",
   "author": "",
   "license": "ISC",
   "keywords": [],
-  "main": "index.js",
+  "main": "dist/index.js",
+  "bin": {
+    "ijh": "dist/index.js"
+  },
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
@@ -14,6 +17,7 @@
     "build": "tsup"
   },
   "dependencies": {
+    "cac": "^6.7.14",
     "fast-glob": "^3.3.1",
     "simple-git": "^3.20.0"
   },
