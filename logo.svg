@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- 地球图标 -->
+  <circle cx="100" cy="100" r="90" fill="#007bff" />
+
+  <!-- JSON文件图标（方括号） -->
+  <rect x="80" y="80" width="40" height="40" fill="#ff9900" />
+  <text x="100" y="120" text-anchor="middle" font-size="36" fill="#fff">[ ]</text>
+
+  <!-- 线性渐变定义 -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ff9900;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0000;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- 文字，应用线性渐变和阴影 -->
+  <text x="100" y="170" text-anchor="middle" font-size="24" fill="url(#grad)" text-shadow="2px 2px 4px rgba(0, 0, 0, 0.5)">
+    i18n-json-helper
+  </text>
+</svg>
