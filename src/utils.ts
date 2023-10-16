@@ -38,7 +38,7 @@ export function mergeObj(
   highPriorityVal: 'targe' | 'source' = 'targe',
 ) {
   const keys = Object.keys(source)
-  const needTranslateObj: Record<string, any> = {}
+  const needTranslateObj: Record<string, any> = Array.isArray(source) ? [] : {}
 
   for (const key of keys) {
     const sourceVal = (source as any)[key]
@@ -69,7 +69,7 @@ export function mergeObj(
     if (isObj(sourceVal)) {
       const res = mergeObj(targetVal, sourceVal, highPriorityVal)
       ;(target as any)[key] = res[0]
-      !isEmptyObj(res[1]) && (needTranslateObj[key] =  res[1])
+      !isEmptyObj(res[1]) && (needTranslateObj[key] = res[1])
     }
     else {
       (target as any)[key] = highPriorityVal === 'targe'
