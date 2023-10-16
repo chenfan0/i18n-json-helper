@@ -1,0 +1,42 @@
+{
+  "name": "John Doe",
+  "age": 30,
+  "isEmployee": true,
+  "address": {
+    "street": "123 Hauptstraße",
+    "city": "Irgendeinestadt",
+    "zipcode": "12345"
+  },
+  "phoneNumbers": [
+    {
+      "type": "Zuhause",
+      "number": "555-1234"
+    },
+    {
+      "type": "Arbeit",
+      "number": "555-5678"
+    }
+  ],
+  "skills": {
+    "programming": [
+      "JavaScript",
+      "Python",
+      "Java"
+    ],
+    "languages": {
+      "english": "fluent",
+      "spanish": "basic"
+    }
+  },
+  "Fähigkeiten": {
+    "Programmierung": [
+      "JavaScript",
+      "Python",
+      "Java"
+    ],
+    "Sprachen": {
+      "Englisch": "fließend",
+      "Deutsch": "Grundkenntnisse"
+    }
+  }
+}

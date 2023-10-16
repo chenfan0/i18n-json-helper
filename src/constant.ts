@@ -5,6 +5,7 @@ export const BASE_CONFIG = {
   baseLang: 'en',
   space: 2,
   targetLangs: [] as string[],
-  outputDir: './ijh-output',
-  mode: 'separate'
+  outputDir: './ijh-needTranslate',
+  mode: 'separate',
+  translationDir: './ijh-translation'
 }

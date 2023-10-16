@@ -1,0 +1,27 @@
+{
+  "name": "约翰·杜",
+  "age": 30,
+  "isEmployee": true,
+  "address": {
+    "street": "123 主街",
+    "city": "任意城镇",
+    "zipcode": "12345"
+  },
+  "phoneNumbers": [
+    {
+      "type": "家庭",
+      "number": "555-1234"
+    },
+    {
+      "type": "工作",
+      "number": "555-5678"
+    }
+  ],
+  "技能": {
+    "编程": ["JavaScript", "Python", "Java"],
+    "语言": {
+      "英语": "流利",
+      "德语": "基础"
+    }
+  }
+}

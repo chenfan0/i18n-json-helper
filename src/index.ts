@@ -8,6 +8,7 @@ import { cac } from 'cac'
 import { getConfig } from './config'
 import { autoCompleteOtherLang } from './autoCompleteOtherLang'
 import { autoSimplifyOtherLang } from './autoSimplifyOtherLang'
+import { autoReplaceOtherLang } from './autoReplaceOtherLang'
 
 interface GlobalCLIOptions {
   '--'?: string[]
@@ -17,8 +18,8 @@ interface GlobalCLIOptions {
   'simplify'?: boolean
   'e'?: boolean
   'extract'?: boolean
-  'd'?: boolean
-  'delete'?: boolean
+  'r'?: boolean
+  'replace'?: boolean
 }
 
 const pkg = JSON.parse(readFileSync(resolve(cwd(), './package.json'), { encoding: 'utf-8' }))
@@ -28,6 +29,7 @@ const cli = cac('ijh')
 
 cli.option('-c, --complete', 'auto complete other lang json')
 cli.option('-s, --simplify', 'simplify json fields that do not exist in baseLang in other json lang')
+cli.option('-r, --replace', 'provide json files for json replacement')
 
 // -r --replace
 // -s --sort
@@ -44,4 +46,6 @@ const { options } = cli.parse() as { options: GlobalCLIOptions }
     await autoCompleteOtherLang(config)
   if (options.s || options.simplify)
     await autoSimplifyOtherLang(config)
+  if (options.r || options.replace)
+    await autoReplaceOtherLang(config)
 })()

@@ -27,10 +27,7 @@ async function autoCompleteOtherLangInSeparateMode(config: ConfigType) {
       const needTranslateJsonPath = path.resolve(outputDir, targetLang, baseLangJsonRelativePath)
 
       // make sure the dir is exist
-      await Promise.all([
-        fsp.mkdir(path.dirname(targetLangJsonPath), { recursive: true }),
-        fsp.mkdir(path.dirname(needTranslateJsonPath), { recursive: true }),
-      ])
+      await fsp.mkdir(path.dirname(targetLangJsonPath), { recursive: true })
 
       let newJsonContent!: string
 
@@ -57,9 +54,11 @@ async function autoCompleteOtherLangInSeparateMode(config: ConfigType) {
 
         else
           newJsonContent = baseLangJsonContent
+        needTranslateJsonContent = newJsonContent
       }
       finally {
         if (needTranslateJsonContent) {
+          await fsp.mkdir(path.dirname(needTranslateJsonPath), { recursive: true })
           pList.push(
             fsp.writeFile(
               needTranslateJsonPath,

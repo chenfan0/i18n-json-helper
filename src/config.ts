@@ -15,14 +15,21 @@ export async function getConfig() {
 
   try {
     config = (await import(configFilePath)).default
-  } catch {}
+  }
+  catch {}
 
   const resolvedConfig = { ...BASE_CONFIG, ...config } as ConfigType
 
   // make sure path is absolute
-  resolvedConfig.localesDir = path.resolve(cwd(), resolvedConfig.localesDir)
-  resolvedConfig.outputDir = path.resolve(cwd(), resolvedConfig.outputDir)
+  ;[
+    resolvedConfig.localesDir,
+    resolvedConfig.outputDir,
+    resolvedConfig.translationDir,
+  ] = [
+    resolvedConfig.localesDir,
+    resolvedConfig.outputDir,
+    resolvedConfig.translationDir,
+  ].map(dir => path.resolve(cwd(), dir!))
 
   return resolvedConfig
 }
-
