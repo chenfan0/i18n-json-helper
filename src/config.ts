@@ -11,7 +11,11 @@ export function defineConfig(config: ConfigType) {
 }
 
 export async function getConfig() {
-  const config = (await import(configFilePath)).default
+  let config = {}
+
+  try {
+    config = (await import(configFilePath)).default
+  } catch {}
 
   const resolvedConfig = { ...BASE_CONFIG, ...config } as ConfigType
 

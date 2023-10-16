@@ -6,13 +6,15 @@ import { cwd } from 'node:process'
 import { cac } from 'cac'
 
 import { getConfig } from './config'
-import { autoGenOtherLang } from './autoGenOtherLang'
-import { extractJson } from './extractJson'
+import { autoCompleteOtherLang } from './autoCompleteOtherLang'
+import { autoSimplifyOtherLang } from './autoSimplifyOtherLang'
 
 interface GlobalCLIOptions {
   '--'?: string[]
+  'c'?: boolean
+  'complete'?: boolean
   's'?: boolean
-  'sync'?: boolean
+  'simplify'?: boolean
   'e'?: boolean
   'extract'?: boolean
   'd'?: boolean
@@ -24,8 +26,8 @@ const pkg = JSON.parse(readFileSync(resolve(cwd(), './package.json'), { encoding
 const version = pkg.version
 const cli = cac('ijh')
 
-cli.option('-s, --sync', 'sync other lang json')
-cli.option('-d, --delete', 'delete json fields that do not exist in baseLang in other json lang')
+cli.option('-c, --complete', 'auto complete other lang json')
+cli.option('-s, --simplify', 'simplify json fields that do not exist in baseLang in other json lang')
 
 // -r --replace
 // -s --sort
@@ -38,8 +40,8 @@ const { options } = cli.parse() as { options: GlobalCLIOptions }
 ;(async () => {
   const config = await getConfig()
 
-  if (options.s || options.sync)
-    await autoGenOtherLang(config)
-  if (options.e || options.extract)
-    await extractJson(config)
+  if (options.c || options.complete)
+    await autoCompleteOtherLang(config)
+  if (options.s || options.simplify)
+    await autoSimplifyOtherLang(config)
 })()

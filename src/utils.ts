@@ -98,3 +98,33 @@ export async function forEachObj(
 
   return obj
 }
+
+export function simplifyObj(needSimplifyObj: Record<string, any>, baseObj: Record<string, any>) {
+  let simplifiedObj: Record<string, any> = JSON.parse(JSON.stringify(needSimplifyObj))
+
+  const simplifiedKeys = Object.keys(simplifiedObj)
+  const baseKeys = Object.keys(baseObj)
+
+  for (const key of simplifiedKeys) {
+    if (!baseKeys.includes(key)) {
+      delete simplifiedObj[key]
+      if (Array.isArray(simplifiedObj)) {
+        /**
+         * needSimplifyObj: [1, 2, 3, 4, 5]
+         * baseObj: [1, 2, 3]
+         * expect: [1, 2, 3]
+         */
+        simplifiedObj = simplifiedObj.slice(0, Number(key))
+        break
+      }
+      continue
+    }
+
+    const val1 = simplifiedObj[key]
+    const val2 = baseObj[key]
+    if (isObj(val1) && isObj(val2))
+      simplifiedObj[key] = simplifyObj(val1, val2)
+  }
+
+  return simplifiedObj
+}

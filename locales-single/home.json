@@ -1,9 +1,23 @@
 {
   "en": {
-    "title": "en title"
+    "title": "en title",
+    "name": {
+      "age": 1
+    },
+    "arr": [
+      1,
+      2,
+      3
+    ]
   },
   "de": {
-    "title": "en title"
+    "title": "en title",
+    "name": {},
+    "arr": [
+      1,
+      2,
+      3
+    ]
   },
   "cn": {
     "title": "en title"

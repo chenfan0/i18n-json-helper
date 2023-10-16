@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { compareObj, forEachObj, mergeObj } from '../utils'
+import { compareObj, forEachObj, mergeObj, simplifyObj } from '../utils';
 
 // describe('compareObj', () => {
 //   it.only('should return a empty obj when latestObj and expiredObj is same', () => {
@@ -78,6 +78,7 @@ describe('mergeObj', () => {
     })
     expect(_patch).toEqual({})
   })
+
   it('should use sourceVal when value type is same and highPriorityVal is source', () => {
     const target = {
       a: 1,
@@ -181,6 +182,38 @@ describe('forEachObj', () => {
         b: 'b -> b',
       },
       arr: ['1 -> 0', '2 -> 1', '3 -> 2'],
+    })
+  })
+})
+
+describe('simplifyObj', () => {
+  it('simplifyObj', () => {
+    const needSimplifyObj = {
+      a: 1,
+      b: 2,
+      obj: {
+        name: 'obj',
+        needSimplify: 'needSimplify',
+        innerArr: [1, 2, 3, 4]
+      },
+      arr: [1, 2, 3]
+    }
+    const baseObj = {
+      a: 1,
+      obj: {
+        name: 'baseObj',
+        innerArr: [1, 2]
+      },
+      arr: [1]
+    }
+    const simplifiedObj = simplifyObj(needSimplifyObj, baseObj)
+    expect(simplifiedObj).toEqual({
+      a: 1,
+      obj: {
+        name: 'obj',
+        innerArr: [1, 2]
+      },
+      arr: [1]
     })
   })
 })

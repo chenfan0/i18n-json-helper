@@ -5,7 +5,7 @@ import fg from 'fast-glob'
 import type { ConfigType } from './type'
 import { forEachObj, isEmptyObj, mergeObj } from './utils'
 
-async function autoGenOtherLangInSeparateMode(config: ConfigType) {
+async function autoCompleteOtherLangInSeparateMode(config: ConfigType) {
   const { localesDir, baseLang, targetLangs, space, outputDir, translateFn } = config
   const baseLangJsonRelativePaths = (await fg.async(`${localesDir}/${baseLang}/**/*.json`)).map((filePath) => {
     const relativePath = path.relative(`${localesDir}/${baseLang}`, filePath)
@@ -81,7 +81,7 @@ async function autoGenOtherLangInSeparateMode(config: ConfigType) {
   await Promise.all(pList)
 }
 
-async function autoGenOtherLangInSingleMode(config: ConfigType) {
+async function autoCompleteOtherLangInSingleMode(config: ConfigType) {
   const { localesDir, baseLang, targetLangs, outputDir, translateFn, space } = config
   const jsonPaths = await fg.async(`${localesDir}/**/*.json`)
   const highPriorityVal = translateFn ? 'source' : 'targe'
@@ -142,7 +142,7 @@ async function autoGenOtherLangInSingleMode(config: ConfigType) {
   await Promise.all(pList)
 }
 
-export async function autoGenOtherLang(
+export async function autoCompleteOtherLang(
   config: ConfigType,
 ) {
   // clear out dir
@@ -152,10 +152,10 @@ export async function autoGenOtherLang(
 
   switch (config.mode) {
     case 'separate':
-      await autoGenOtherLangInSeparateMode(config)
+      await autoCompleteOtherLangInSeparateMode(config)
       break
     case 'single':
-      await autoGenOtherLangInSingleMode(config)
+      await autoCompleteOtherLangInSingleMode(config)
       break
   }
 }

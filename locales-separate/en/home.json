@@ -13,7 +13,6 @@
       }
     }
   },
-  "a": 1,
   "products": {
     "title": "Products",
     "searchPlaceholder": "Search Products...",
