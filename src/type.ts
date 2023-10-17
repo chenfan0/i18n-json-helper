@@ -5,6 +5,6 @@ export interface ConfigType {
   space: number,
   mode: 'separate' | 'single',
   outputDir: string
-  translateFn?: (baseLangText: string, translateLang: string) => Promise<string | number> | string | number
+  translateFn?: (baseLangText: string, targetLang: string) => Promise<string | number> | string | number
   translationDir?: string
 }

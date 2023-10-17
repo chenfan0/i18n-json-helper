@@ -2,8 +2,8 @@
   "compilerOptions": {
     "target": "ESNext",
     "baseUrl": ".",
-    "module": "es2020",
-    "moduleResolution": "Bundler",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "strict": true,
     "outDir": "./dist/",
     "esModuleInterop": true,

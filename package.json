@@ -1,30 +1,49 @@
 {
   "name": "i18n-json-helper",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
-  "author": "",
-  "license": "ISC",
-  "keywords": [],
+  "version": "0.0.1",
+  "description": "This is a tool to help you easily deal with the json file management troubles caused by i18n",
+  "license": "MIT",
+  "homepage": "https://github.com/chenfan0/i18n-json-helper",
+  "keywords": [
+    "i18n",
+    "json",
+    "i18n-json",
+    "json-helper",
+    "json-tools",
+    "i18n-json-helper"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "bin": {
     "ijh": "dist/index.js"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "vitest",
-    "build": "tsup"
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "cac": "^6.7.14",
-    "fast-glob": "^3.3.1",
-    "simple-git": "^3.20.0"
+    "fast-glob": "^3.3.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "1.0.0-beta.26",
     "eslint": "^8.51.0",
     "tsup": "^7.2.0",
+    "typescript": "^5.2.2",
     "vitest": "^0.34.6"
   }
 }

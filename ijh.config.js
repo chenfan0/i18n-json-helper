@@ -13,12 +13,7 @@ export default {
   mode: 'single',
   outputDir: './ijh-needTranslate-single',
   translationDir: './ijh-translation-single/',
-  // translateFn(baseLangText, translateLang) {
-  //   return new Promise((resolve) => {
-  //     setTimeout(() => {
-  //       resolve(`${translateLang} + ${baseLangText}`)
-  //     }, 1000)
-      
-  //   })
+  // translateFn(baseLangText, targetLang) {
+  //   return `${baseLangText} -> ${targetLang}`
   // },
 }

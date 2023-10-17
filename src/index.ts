@@ -10,6 +10,8 @@ import { autoCompleteOtherLang } from './autoCompleteOtherLang'
 import { autoSimplifyOtherLang } from './autoSimplifyOtherLang'
 import { autoReplaceOtherLang } from './autoReplaceOtherLang'
 
+export { defineConfig } from './config'
+
 interface GlobalCLIOptions {
   '--'?: string[]
   'c'?: boolean
@@ -31,8 +33,6 @@ cli.option('-c, --complete', 'auto complete other lang json')
 cli.option('-s, --simplify', 'simplify json fields that do not exist in baseLang in other json lang')
 cli.option('-r, --replace', 'provide json files for json replacement')
 
-// -r --replace
-// -s --sort
 
 cli.help()
 cli.version(version)
